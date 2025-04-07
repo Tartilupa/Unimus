@@ -103,6 +103,26 @@ def load_modules():
             mods[mod_name] = mod
     return mods
 
+# Namesti modul iz GitHub repozitorija
+def install_module(name):
+    GITHUB_USER = "tartilupa"
+    raw_url = f"https://raw.githubusercontent.com/{GITHUB_USER}/{name}/main/{name}.py"
+    mods_path = "mods"
+    os.makedirs(mods_path, exist_ok=True)
+    local_file = os.path.join(mods_path, f"{name}.py")
+    
+    try:
+        print(f"⬇️  Downloading: {raw_url}")
+        response = requests.get(raw_url)
+        if response.status_code == 200:
+            with open(local_file, "w", encoding="utf-8") as f:
+                f.write(response.text)
+            print(Fore.GREEN + f"✅ Module '{name}' installed successfully!" + Style.RESET_ALL)
+        else:
+            print(Fore.RED + f"❌ Failed to download module: HTTP {response.status_code}" + Style.RESET_ALL)
+    except Exception as e:
+        print(Fore.RED + f"❌ Error: {str(e)}" + Style.RESET_ALL)
+
 # Glavna funkcija
 def main():
     print_banner()
@@ -151,7 +171,12 @@ def main():
                 elif command == "back":
                     break
 
-        elif choice_main.startswith("package "):
+        elif choice_main.startswith("package install "):
+            name = choice_main.split(" ", 2)[2]
+            install_module(name)
+            modules = load_modules()
+
+        elif choice_main.startswith("pkg "):
             mod_name = choice_main.split(" ", 1)[1]
             if mod_name in modules:
                 modules[mod_name].run()
