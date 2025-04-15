@@ -19,6 +19,7 @@ def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def print_banner():
+    ver = "1.2.0"
     ascii_art = """
  @@@  @@@ @@@  @@@ @@@ @@@@@@@@@@  @@@  @@@  @@@@@@
  @@!  @@@ @@!@!@@@ @@! @@! @@! @@! @@!  @@@ !@@    
@@ -27,7 +28,7 @@ def print_banner():
   :.:: :  ::    :  :    :      :    :.:: :  ::.: : 
     """
     print(Fore.RED + ascii_art + Style.RESET_ALL)
-    print(Fore.CYAN + "Welcome to UNIMUS. Created by Tartilupa.\n" + Style.RESET_ALL)
+    print(Fore.CYAN + f"Welcome to UNIMUS {ver}. Created by Tartilupa.\n" + Style.RESET_ALL)
 
 # Brute force napad na FTP
 def ftp_bruteforce_attack(target_host, target_port, username, wordlist):
