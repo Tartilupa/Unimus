@@ -2,7 +2,7 @@
 
 Linear: https://linear.app/unimus/join/5d88102e95523f2bf021fb5b5a538e3b?s=4
 
-Publish: packagesub@unimus.odoo.com
+Submit package: packagesub@unimus.odoo.com
 
 ---
 # Unimus Documentation
